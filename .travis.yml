@@ -8,9 +8,11 @@ addons:
 jobs:
   include:
   - stage: Build and Deploy
+    python: 2.7
     env:
     - REL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
     script:
+    - pip install Pygments
     - curl -LO https://github.com/gohugoio/hugo/releases/download/v0.20.7/hugo_0.20.7_Linux-64bit.tar.gz
     - mkdir ./hugo
     - tar xf hugo_0.20.7_Linux-64bit.tar.gz -C ./hugo
