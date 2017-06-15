@@ -1,0 +1,39 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Serif', serif;
+}
+
+pre, code {
+  font-size: 0.8em;
+  font-family: 'Fira Mono', monospace;
+  font-variant-ligatures: none;
+}
+
+article {
+  max-width: 960px;
+  padding: 2em;
+}
+
+article > div > p {
+  max-width: 560px;
+}
+
+figure img {
+  max-width: 100%;
+}
+
+blockquote {
+  border-left: #000 solid 1px;
+  padding: 0 1em;
+}
+
+.highlight, pre {
+  overflow-y: hidden;
+}
+
+.highlight {
+  padding: 0.1em 0.5em;
+}

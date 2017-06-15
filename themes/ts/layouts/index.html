@@ -1,0 +1,9 @@
+{{ partial "header.html" . }}
+  <main>
+    <ul>
+      {{ $paginator := .Paginate (where .Site.Pages "Type" "post") }}
+      {{ range $paginator.Pages }}
+          <li><time>{{ .Date.Format "02 Jan 2006" }}</time> » <a href="{{ .Permalink }}">{{ .Title }}</a>
+      {{ end }}
+    </ul>
+{{ partial "footer.html" . }}

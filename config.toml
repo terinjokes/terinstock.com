@@ -1,0 +1,26 @@
+baseurl = "https://terinstock.com"
+disablePathToLower = true
+languageCode = "en-us"
+title = "Terin Stock"
+theme = "ts"
+
+PygmentsCodeFences = true
+pygmentsstyle = "perldoc"
+
+SectionPagesMenu = "main"
+
+[permalinks]
+  post = "/:section/:year/:month/:slug"
+  letter = "/:section/:year/:month/:slug"
+  talk = "/:section/:year/:month/:slug"
+
+[[menu.main]]
+  name = "Blog Posts"
+  weight = -110
+  identifier = "post"
+  url = "/post/"
+[[menu.main]]
+  name = "Letters"
+  weight = -100
+  identifier = "letter"
+  url = "/letter/"

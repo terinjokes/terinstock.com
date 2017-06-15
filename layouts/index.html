@@ -1,0 +1,27 @@
+{{ partial "header.html" . }}
+  <main>
+    <h1>Hi!</h1>
+    <img src="/logo.png">
+    <div>
+      Follow Me:
+      <ul>
+        <li><a href="https://github.com/terinjokes">GitHub</a></li>
+        <li><a href="https://news.ycombinator.com/user?id=terinjokes">Hacker News</a></li>
+        <li><a href="https://twitter.com/terinjokes">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/in/terin">LinkedIn</a></li>
+        <li><a href="{{ .RSSLink }}">RSS</a></li>
+      </ul>
+    </div>
+    <div>
+      Read More:
+      <nav>
+        <ul>
+          {{ $currentNode := . }}
+          {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+    </div>
+  </main>
+{{ partial "footer.html" . }}

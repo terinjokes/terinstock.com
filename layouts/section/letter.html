@@ -1,0 +1,12 @@
+{{ partial "header.html" . }}
+  <main>
+    <ul>
+      {{ range .Data.Pages }}
+          <li><time>{{ .Date.Format "02 Jan 2006" }}</time> » <a href="{{ .Permalink }}">{{ .Title }}</a>
+            {{ if isset .Params.music "artist" }}
+            <br><i>Listen To</i>: {{ .Params.music.artist }} &mdash; {{ .Params.music.track }}
+            {{ end }}
+      {{ end }}
+    </ul>
+  </main>
+{{ partial "footer.html" . }}
