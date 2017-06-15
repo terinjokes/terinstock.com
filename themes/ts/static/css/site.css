@@ -7,18 +7,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 pre, code {
-  font-size: 0.8em;
+  font-size: 80%;
   font-family: 'Fira Mono', monospace;
   font-variant-ligatures: none;
 }
 
 article {
-  max-width: 960px;
+  max-width: 60em;
   padding: 2em;
+  margin: auto;
 }
 
-article > div > p {
-  max-width: 560px;
+article > div > p,
+article > div > ul {
+  max-width: 30em;
+}
+
+article > div > blockquote,
+article > div > .highlight,
+article > div > pre {
+  max-width: 40em;
 }
 
 figure img {
