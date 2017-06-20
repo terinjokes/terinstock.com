@@ -74,7 +74,7 @@ From [RFC4492](http://tools.ietf.org/rfc/rfc4492.txt), when the `ECDHE_ECDSA`, `
 
 The `ServerKeyExchange` portion of the TLS handshake from the server to the client is replicated below.
 
-```
+```text
 0000   0c 00 01 49 03 00 16 41 04 b2 33 23 71 c9 da 80
 0010   94 d3 ec eb 05 9f e5 36 91 a7 e2 e5 40 78 aa 03
 0020   38 4f eb 7c 36 1b 92 21 58 cf c3 e5 b7 08 40 5a
@@ -110,7 +110,9 @@ Section 5.4 of RFC4492 ends with the following note:
 
 > A possible reason for a fatal handshake failure is that the client's capabilities for handling elliptic curves and point formats are exceeded
 
-While Erlang supports all 25 elliptic curves named in RFC4492, common browsers only support a smaller subset of two or three. In the above snippet, we see that Erlang chose `secp256k1`, the elliptic curve used in [Bitcoin](https://en.bitcoin.it/wiki/Secp256k1), and not one supported by my browsers.
+While Erlang supports all 25 elliptic curves named in RFC4492, common browsers only support a smaller subset of two or three.[^curves-support] In the above snippet, we see that Erlang chose `secp256k1`, the elliptic curve used in [Bitcoin](https://en.bitcoin.it/wiki/Secp256k1), and not one supported by my browsers.
+
+[^curves-support]: **Edit:** An earlier version of this post claimed browsers only supported three elliptic curves: `secp192r1`, `secp224r1`, and `secp256r1`. This information was incorrectly included from an earlier draft.
 
 Erlang's early support of elliptic curves are problematic. When picking an elliptic curve, Erlang does not consider the list of supported curves sent by the browser. This has been resolved with the [Erlang R16R03-1](http://www.erlang.org/download_release/23) release.
 
@@ -134,7 +136,9 @@ ssl:transport_accept(ListenSocket).
 rp(ssl:cipher_suites(openssl)).
 ```
 
-I created [a patch](https://git-wip-us.apache.org/repos/asf?p=couchdb.git;a=commit;h=fdb2188) for CouchDB that adds the configuration options `secure_renegotiate`, `ciphers`, and `tls_versions` to the SSL section:
+I created [a patch](https://git-wip-us.apache.org/repos/asf?p=couchdb.git;a=commit;h=fdb2188) for CouchDB that adds the configuration options `secure_renegotiate`, `ciphers`, and `tls_versions` to the SSL section:[^couchdb-patch]
+
+[^couchdb-patch]: **Edit:** My patch did not land in CouchDB 1.6.0. CouchDB has since been reorganized into multiple repos, but my patch continues to be in place for a future stable release.
 
 ```ini
 [ssl]
@@ -149,9 +153,3 @@ ciphers            = [ "ECDHE-ECDSA-AES128-SHA256", "ECDHE-ECDSA-AES128-SHA" ]
 ---
 
 While presented through the lens of an HTTP server in Erlang, the same basic steps could be extrapolated to any secure server written in any language. Recapping my debugging process: First, I ensured the server is configured to send the entire certificate chain to the client. Then, I tested the connection with a TLS scanner or a network protocol analyzer. Finally, once the server is properly communicating, I took a look at my server's TLS configuration to ensure it is secure and reflect current best practices.
-
----
-
-**Edit:** An earlier version of this post claimed browsers only supported three elliptic curves: `secp192r1`, `secp224r1`, and `secp256r1`. This information was incorrectly included from an earlier draft.
-
-**Edit 2:** I’ve been lying for 8 months. My patch did not land in CouchDB 1.6.0. CouchDB has since been reorganized into multiple repos, but my patch continues to be in place for a future stable release.
