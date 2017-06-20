@@ -7,6 +7,8 @@ theme = "ts"
 PygmentsCodeFences = true
 pygmentsstyle = "perldoc"
 
+footnoteReturnLinkContents = "↩"
+
 SectionPagesMenu = "main"
 
 [permalinks]
