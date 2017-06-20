@@ -6,8 +6,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Noto Serif', serif;
 }
 
-pre, code {
+code {
   font-size: 80%;
+}
+
+pre, code {
   font-family: 'Fira Mono', monospace;
   font-variant-ligatures: none;
 }
@@ -36,7 +39,8 @@ article > div > ul {
 article > div > blockquote,
 article > div > .highlight,
 article > div > pre {
-  max-width: 40em;
+  max-width: 80ex;
+  font-size: 80%;
 }
 
 figure img {
