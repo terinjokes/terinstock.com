@@ -5,6 +5,8 @@ addons:
   ssh_known_hosts:
   - raw.threestrangedays.net
 
+language: python
+
 jobs:
   include:
   - stage: Build and Deploy
