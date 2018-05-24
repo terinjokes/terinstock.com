@@ -16,13 +16,18 @@ SectionPagesMenu = "main"
   letter = "/:section/:year/:month/:slug"
   talk = "/:section/:year/:month/:slug"
 
-[[menu.main]]
+[[menu.index]]
   name = "Blog Posts"
-  weight = -110
+  weight = -130
   identifier = "post"
   url = "/post/"
-[[menu.main]]
+[[menu.index]]
+  name = "Talks"
+  weight = -120
+  identifier = "talk"
+  url = "/talk/"
+[[menu.index]]
   name = "Letters"
-  weight = -100
+  weight = -110
   identifier = "letter"
   url = "/letter/"

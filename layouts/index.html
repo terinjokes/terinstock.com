@@ -17,7 +17,7 @@
       <nav>
         <ul>
           {{ $currentNode := . }}
-          {{ range .Site.Menus.main }}
+          {{ range .Site.Menus.index }}
             <li><a href="{{ .URL }}">{{ .Name }}</a></li>
           {{ end }}
         </ul>
