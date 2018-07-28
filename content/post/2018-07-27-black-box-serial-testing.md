@@ -92,7 +92,7 @@ func TestCLI(t *testing.T) {
 ```
 
 As the two parts of the pseudo-teleprinter are connected to each other, writes
-to on will be readable from the other side. Thus duplex communication is
+to one will be readable from the other side. Thus duplex communication is
 possible for more complex black-box tests.
 
 This method isn’t entirely perfect. For example, on Linux, it’s not always
