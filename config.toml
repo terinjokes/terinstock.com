@@ -31,3 +31,6 @@ SectionPagesMenu = "main"
   weight = -110
   identifier = "letter"
   url = "/letter/"
+
+[social]
+  twitter = "terinjokes"

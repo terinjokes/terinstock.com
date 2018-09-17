@@ -1,6 +1,10 @@
 +++
 date = "2018-09-17T00:35:55Z"
 title = "Hardware MIDI Player (Part One)"
+images = [
+  "/media/fc/f0760ee810f82952727a4b8afd83dc4d3cf962ef4b993ce71df61163ea0f1a.jpeg"
+]
+description = "Building a hardware MIDI player with a Raspberry Pi, along with a detour into the Linux kernel."
 +++
 
 ## Overview
