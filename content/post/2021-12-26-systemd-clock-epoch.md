@@ -32,13 +32,22 @@ Description=Timer for updating clock-epoch
 [Timer]
 OnBootSec=5min
 OnUnitInactiveSec=17min
+
+[Install]
+WantedBy=timers.target
 ```
+
+I've arbitrarily delayed activation of this timer by setting `OnBootSec`, since this is low priority at boot time.
 
 Then reload the daemon, then enable and start the timer.
 
 ```bash
-systemd daemon-reload
-systemd enable --now set-clock-epoch.timer
+systemctl daemon-reload
+systemctl enable --now set-clock-epoch.timer
 ```
 
 Now when the system reboots, systemd will read the modification time of this file during early boot, setting the time to a reasonably close value, allowing certificates to be validated and NTP to take over.
+
+---
+
+As [gioele](https://lobste.rs/s/0jlh6q/systemd_s_clock_epoch_for_rtc_less_systems#c_exj4qa) on Lobste.rs points out, on systemd version 250 and later, if you're using `systemd-timesyncd` you can set `SaveIntervalSec=` to automatically write the time out to the filesystem. This follows a similar mechanism, the file `/var/lib/systemd/timesync/clock` has it's modification time set, and is used to restore out reboot. The time is set by the epoch mechanism much earlier in the startup process than the timesyncd mechanism (which first requires service activation to begin). It also doesn't help if, like me, you're not using timesyncd.
