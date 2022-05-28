@@ -1,1 +1,19 @@
-<script async class='speakerdeck-embed' data-id='{{ index .Params 0 }}' data-ratio='{{ if isset .Params 1}}{{ index .Params 1 }}{{ else }}1.33333333333333{{ end }}' src='//speakerdeck.com/assets/embed.js'></script>
+{{- if .IsNamedParams -}}
+    {{- $user := .Get "user" }}
+    {{- $slug := .Get "slug" }}
+    {{- if and $user $slug -}}
+        {{- template "render-speakerdeck" (dict "user" $user "slug" $slug) -}}
+    {{- end -}}
+{{- else -}}
+    {{- $user := .Get 0 -}}
+    {{- $slug := .Get 1 -}}
+    {{- template "render-speakerdeck" (dict "user" $user "slug" $slug) -}}
+{{- end -}}
+
+{{- define "render-speakerdeck" -}}
+    {{- $url := printf "https://speakerdeck.com/%s/%s" .user .slug -}}
+    {{- $query := querify "url" $url -}}
+    {{- $request := printf "https://speakerdeck.com/oembed.json?%s" $query -}}
+    {{- $json := getJSON $request -}}
+    {{- $json.html | safeHTML -}}
+{{- end -}}

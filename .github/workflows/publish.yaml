@@ -7,8 +7,8 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: nixbuild/nix-quick-install-action@v4
+      - uses: actions/checkout@v3
+      - uses: nixbuild/nix-quick-install-action@v13
       - run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519

@@ -2,4 +2,4 @@
 
 let d = import ./default.nix { inherit pkgs; };
 
-in pkgs.mkShell { buildInputs = [ d.python d.hugo ]; }
+in pkgs.mkShell { buildInputs = [ d.hugo ]; }

@@ -10,5 +10,5 @@ Building your own Kubernetes Controllers to extend the functionality of your clu
 [kubecon]: https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/
 
 
-{{< speakerdeck 413d79d1f9d64a5996ea23bf72367ebc "1.77777777777778">}}
+{{< speakerdeck user="terinjokes" slug="controller-extending-your-k8s-cluster" >}}
 {{< youtube TM-2GgQ6Q2A >}}

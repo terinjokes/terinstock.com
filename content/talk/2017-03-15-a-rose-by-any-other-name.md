@@ -10,7 +10,7 @@ I went on, and I made a comparison to Browserify's concepts.
 
 [wbcc]: https://www.youtube.com/watch?v=AZPYL30ozCY
 
-{{< speakerdeck 1d2a0cb9884b494ea0513561846cb8b7 "1.77777777777778">}}
+{{< speakerdeck user="terinjokes" slug="a-rose-by-any-other-name-dot-dot-dot" >}}
 
 While my talk is chiefly satirical, I get serious towards the end: Webpack is
 powerful because of how configurable it is. On the other hand, people like

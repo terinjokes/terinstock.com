@@ -83,7 +83,7 @@ Finally, you can alias before dependencies are even written to disk if you use
 Yarn[^yarn]. Since it breaks compatibility with npm, it's best if you only use this
 method in private applications, not public applications or in libraries.
 
-[^yarn]: Unfortunately, it seems this isn't yet in the documentation. It has, however, been a "Yarn tip". {{< tweet 873958247304232961 >}}
+[^yarn]: Unfortunately, it seems this isn't yet in the documentation. It has, however, been a "Yarn tip". {{< tweet user="sebmck" id="873958247304232961" >}}
 
 In this method you combine the alias with defining your dependencies in
 package.json.

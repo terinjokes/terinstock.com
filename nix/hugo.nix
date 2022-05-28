@@ -1,17 +1,29 @@
-{ pkgs, ... }:
+{ lib, buildGo118Module, fetchFromGitHub, installShellFiles, ... }:
 
-pkgs.buildGoPackage rec {
+buildGo118Module rec {
   pname = "hugo";
-  version = "v0.20.7";
+  version = "0.99.1";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "gohugoio";
     repo = "hugo";
-    rev = version;
-    sha256 = "18r8jnq6mnkigh6i2vq7ldvizdi5kyl96bclyh82y2cv6izj9lmi";
+    rev = "v${version}";
+    sha256 = "0wn8lkb7xkdlbnbj9rn16x1glj11m0j4a3db6c96n1iihnxifnrl";
   };
 
-  goPackagePath = "github.com/spf13/hugo";
-  deleteVendor = true;
-  goDeps = ./deps.nix;
+  tags = [ "extended" ];
+  proxyVendor = true;
+  subPackages = [ "." ];
+
+  vendorSha256 = "0n3f8n36pr0l8c497qrg4d21py0rhhk0mbgwm56yfapd33q2smq3";
+  nativeBuildInputs = [ installShellFiles ];
+
+  postInstall = ''
+    $out/bin/hugo gen man
+    installManPage man/*
+    installShellCompletion --cmd hugo \
+      --bash <($out/bin/hugo gen autocomplete --type=bash) \
+      --fish <($out/bin/hugo gen autocomplete --type=fish) \
+      --zsh <($out/bin/hugo gen autocomplete --type=zsh)
+  '';
 }

@@ -1,36 +1,51 @@
 baseurl = "https://terinstock.com"
-disablePathToLower = true
-languageCode = "en-us"
 title = "Terin Stock"
-theme = "ts"
+copyright = "© 2022 Terin Stock"
+canonifyurls = true
+languageCode = "en-us"
+theme = "hugo-dusk"
 
-PygmentsCodeFences = true
-pygmentsstyle = "perldoc"
-
+disablePathToLower = true
 footnoteReturnLinkContents = "↩"
 
-SectionPagesMenu = "main"
+[author]
+  name = "Terin Stock"
+
+[markup.goldmark]
+  autoHeadingIDType = "blackfriday"
+
+[markup.highlight]
+  anchorLineNos = false
+  codeFences = true
+  guessSyntax = false
+  noClasses = true
+  style = "rrt"
 
 [permalinks]
   post = "/:section/:year/:month/:slug"
-  letter = "/:section/:year/:month/:slug"
   talk = "/:section/:year/:month/:slug"
 
-[[menu.index]]
-  name = "Blog Posts"
-  weight = -130
+[[menu.main]]
+  name = "Posts"
+  weight = 1
   identifier = "post"
   url = "/post/"
-[[menu.index]]
+[[menu.main]]
   name = "Talks"
-  weight = -120
+  weight = 2
   identifier = "talk"
   url = "/talk/"
-[[menu.index]]
-  name = "Letters"
-  weight = -110
-  identifier = "letter"
-  url = "/letter/"
 
-[social]
+[params.meta]
+  keywords = "blog, tech"
+
+[params]
+  github = "terinjokes"
   twitter = "terinjokes"
+  linkedin = "terin"
+
+[privacy]
+  [privacy.youtube]
+    privacyEnhanced = true
+  [privacy.twitter]
+    enableDNT = true

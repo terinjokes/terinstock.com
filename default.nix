@@ -3,12 +3,10 @@
 with pkgs;
 
 let
-  python = python3.withPackages (ps: with ps; [ pygments ]);
   hugo = callPackage ./nix/hugo.nix { };
   site = stdenvNoCC.mkDerivation {
     name = "terinstock.com";
     src = ./.;
-    buildInputs = [ python ];
 
     phases = [ "unpackPhase" "buildPhase" ];
 
@@ -18,7 +16,7 @@ let
   };
 
 in {
-  inherit python hugo site;
+  inherit hugo site;
   publish = runCommand "release publish" {
     preferLocalBuild = true;
     allowSubstitues = false;

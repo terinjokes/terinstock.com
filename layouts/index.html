@@ -1,27 +1,13 @@
 {{ partial "header.html" . }}
   <main>
     <h1>Hi!</h1>
-    <img src="/logo.png">
-    <div>
-      Follow Me:
-      <ul>
-        <li><a href="https://github.com/terinjokes">GitHub</a></li>
-        <li><a href="https://news.ycombinator.com/user?id=terinjokes">Hacker News</a></li>
-        <li><a href="https://twitter.com/terinjokes">Twitter</a></li>
-        <li><a href="https://www.linkedin.com/in/terin">LinkedIn</a></li>
-        <li><a href="{{ .RSSLink }}">RSS</a></li>
-      </ul>
-    </div>
-    <div>
-      Read More:
-      <nav>
-        <ul>
-          {{ $currentNode := . }}
-          {{ range .Site.Menus.index }}
-            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-          {{ end }}
-        </ul>
-      </nav>
-    </div>
-  </main>
+    <img src="/logo.png" alt="me!">
+    <p>I'm Terin, a software developer who was once "internet famous", whatever that means. This is my personal website and blog, with some of my most recent content found below.</p>
+    <p>Feel free to get in touch. I'd love to hear from you! I'm legally required to say "don't forget to like and subscribe, and ring that (RSS) bell for more!" I hope I remove these paragraphs before this site goes live.</p>
+
+    <h2>Recent Posts</h2>
+    {{ $paginator := .Paginate (first 3 (where site.RegularPages "Type" "in" site.Params.mainSections)) }}
+      {{ range $paginator.Pages }}
+        {{ .Render "summary" }}
+    {{ end }}
 {{ partial "footer.html" . }}
