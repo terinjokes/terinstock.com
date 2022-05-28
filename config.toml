@@ -10,6 +10,7 @@ footnoteReturnLinkContents = "↩"
 
 [author]
   name = "Terin Stock"
+  email = "terin@terinstock.com"
 
 [markup.goldmark]
   autoHeadingIDType = "blackfriday"
