@@ -1,9 +1,13 @@
 {{ partial "header.html" . }}
   <main>
     <h1>Hi!</h1>
-    <img src="/logo.png" alt="me!">
-    <p>I'm Terin, a software developer who was once "internet famous", whatever that means. This is my personal website and blog, with some of my most recent content found below.</p>
-    <p>Feel free to get in touch. I'd love to hear from you! I'm legally required to say "don't forget to like and subscribe, and ring that (RSS) bell for more!" I hope I remove these paragraphs before this site goes live.</p>
+    <section class="h-card">
+        <img src="/logo.png" class="u-photo" alt="Photo of myself">
+        <p>I'm <span class="p-name"><span class="p-given-name">Terin</span> <span class="p-family-name">Stock</span></span>, otherwise known as <span class="p-nickname">terinjokes</span>, a <span class="p-job-title" style="text-transform: lowercase">Software Developer</span>. I'm located in beautiful <span class="p-adr hdr"><span class="p-locality">San Francisco</span>, <span class="p-region">California</span></span>.
+        </p>
+        <p>Feel free to <a href="mailto:terin@terinstock.com" class="u-email">get in touch</a>. I'd love to hear from you!</p>
+        <a rel="me" class="u-url u-uid" href="https://terinstock.com" hidden></a>
+    </section>
 
     <h2>Recent Posts</h2>
     {{ $paginator := .Paginate (first 3 (where site.RegularPages "Type" "in" site.Params.mainSections)) }}

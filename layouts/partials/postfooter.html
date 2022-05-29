@@ -1,0 +1,23 @@
+<footer class="post-footer">
+
+  <div class="post-footer-data">
+            {{ partial "tags.html" . }}
+    <a href="{{ .Page.Permalink }}" class="u-url u-uid" style="text-decoration: none">
+      <time class="date dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0800" }}"> {{ .Date.Format "2006-01-02" }} </time>
+    </a>
+    <div class="p-author h-card" hidden>
+      <a href="{{ .Site.BaseURL }}" class="u-url u-uid p-name" rel="author">{{ .Site.Author.name }}</a>
+      <img src="/logo.png" class="u-photo" />
+    </div>
+    {{if or .Params.categories .Params.series}}
+    <hr>
+            {{ partial "categories.html" . }}
+            {{ partial "series.html" . }}
+    {{end}}
+  </div>
+</footer>
+
+{{ if eq .Type "post" }}
+  {{ template "_internal/disqus.html" . }}
+  {{ template "partials/utterances.html" . }}
+{{ end }}
