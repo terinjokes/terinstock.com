@@ -1,5 +1,6 @@
 +++
 date = "2018-09-17T00:35:55Z"
+lastmod = "2022-12-18T18:33:00Z"
 title = "Hardware MIDI Player (Part One)"
 images = [
   "/media/fc/f0760ee810f82952727a4b8afd83dc4d3cf962ef4b993ce71df61163ea0f1a.jpeg"
@@ -126,7 +127,7 @@ breaking change. Since this range was so large, and the underlying files so
 different, setting up a compilation cache did not decrease the rebuild
 durations.
 
-[hunt]: https://twitter.com/terinjokes/status/1028870779226574848
+[hunt]: https://archive.vn/IqsHn
 
 After at least 16 bisection points, I was lead to [a single commit][38d2b5fb75]
 in the kernel driver for the USB controller used by the Raspberry Pi, the
@@ -196,7 +197,6 @@ Like the software, I plan on releasing both the PCB and the case designs as
 To really sell the illusion that, on an alternate timeline for the 90s, we
 bought our pre-recorded music as MIDI on floppies, I'd love to commission
 musicians to compose some awesome tracks that can be packaged onto a floppy.
-Let me know via [email] or [Twitter] if this appeals to you.  open hardware.
+Let me know via [email] if this appeals to you.
 
 [email]: mailto:terin@terinstock.com
-[Twitter]: https://twitter.com/terinjokes
