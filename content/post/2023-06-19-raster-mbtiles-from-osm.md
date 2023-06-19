@@ -45,7 +45,7 @@ In another terminal we could exec into this container to start the pre-rendering
 podman exec -it --latest bash
 ```
 
-Within the container, we can fetch the `render_list_geo.pl` script, which wraps the `render_list` command to render within a bounding box at different zoom levels. I then ran the script with the bounding box determined with the  [https://boundingbox.klokantech.com/](Bounding Box Tool) for zoom levels 8 through 13.
+Within the container, we can fetch the `render_list_geo.pl` script, which wraps the `render_list` command to render within a bounding box at different zoom levels. I then ran the script with the bounding box determined with the  [Bounding Box Tool](https://boundingbox.klokantech.com/) for zoom levels 8 through 13.
 
 ```
 wget https://raw.githubusercontent.com/alx77/render_list_geo.pl/master/render_list_geo.pl
