@@ -2,21 +2,24 @@ name: publish
 on:
   push:
     branches:
-      - master
+      - trunk
 jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: nixbuild/nix-quick-install-action@v13
-      - run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          sudo chmod 600 ~/.ssh/id_ed25519
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-      - run: nix-shell ./default.nix -A publish --option sandbox false
-        env:
-          RSYNC_HOST: ${{ secrets.RSYNC_HOST }}
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.99.1"
+          extended: true
+      - run: hugo --minify
+      - uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: "0b1bb2d40bbc1c8a1c6440bb1d756a3c"
+          projectName: terin
+          directory: public
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "3"
