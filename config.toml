@@ -1,9 +1,10 @@
 baseurl = "https://terinstock.com"
 title = "Terin Stock"
-copyright = "© 2022 Terin Stock"
+copyright = "© 2014-2024 Terin Stock"
 canonifyurls = true
 languageCode = "en-us"
 theme = "hugo-dusk"
+enableGitInfo = true
 
 disablePathToLower = true
 footnoteReturnLinkContents = "↩"
@@ -43,6 +44,10 @@ footnoteReturnLinkContents = "↩"
 [params]
   github = "terinjokes"
   linkedin = "terin"
+
+[params.author]
+  name = "Terin Stock"
+  email = "terin@terinstock.com"
 
 [privacy]
   [privacy.youtube]

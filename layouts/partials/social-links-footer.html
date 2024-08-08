@@ -23,7 +23,9 @@
   {{end}}
 
   <div class="social-link">
-  <a href="{{ .Site.RSSLink }}" target="_blank">RSS</a>
+  {{ with .OutputFormats.Get "rss" -}}
+  <a href="{{ .Permalink }}" target="_blank">RSS</a>
+  {{ end }}
   </div>
 
 </div>

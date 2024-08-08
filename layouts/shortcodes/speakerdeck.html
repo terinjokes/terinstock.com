@@ -14,6 +14,15 @@
     {{- $url := printf "https://speakerdeck.com/%s/%s" .user .slug -}}
     {{- $query := querify "url" $url -}}
     {{- $request := printf "https://speakerdeck.com/oembed.json?%s" $query -}}
-    {{- $json := getJSON $request -}}
-    {{- $json.html | safeHTML -}}
+    {{- $data := dict -}}
+    {{- with resources.GetRemote $request -}}
+      {{- with .Err -}}
+        {{- errorf "%s" . -}}
+      {{- else -}}
+        {{- $data = . | transform.Unmarshal -}}
+      {{- end -}}
+    {{- else -}}
+      {{- errorf "Unable to retrieve deck %q from SpeakerDeck" .slug -}}
+    {{- end -}}
+    {{- $data.html | safeHTML -}}
 {{- end -}}
