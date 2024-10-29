@@ -1,5 +1,6 @@
 +++
 date = "2024-10-28T02:31:00Z"
+lastmod = "2024-10-29T12:46:46Z"
 title = "Assembling a Game Boy Game with Meson"
 description = "Adding a new 'language' to the Meson build system for RGBDS."
 [params]
@@ -130,3 +131,58 @@ i: Emulated Input 1: gameboy1, Game Boy, 0 axes, 10 buttons
   >}}
 
 I'll be submitting these changes to the upstream Meson project, in the off chance they're fans of the Game Boy.
+
+---
+*Edit 29 Oct:* I've [opened a PR][open-pr] to submit my changes to upstream Meson.
+
+Meson has a concept of module, which are in-tree extensions to the core language to help handle common build tasks with large libraries, such as [compiling moc files][compiling-moc] in Qt projects. I've created a "rgbds" module which has a function run `rgbfix` to patch the ROM header, instead of needing to implement the above `custom_target` yourself.
+
+```meson
+rgbds = import('rgbds')
+rgbds.fix('rgbdstest.gb', rom,
+         title: 'EXAMPLE',
+         mbc_type: 'ROM',
+         fix_spec: 'lhg')
+```
+
+This module also adds a function with a barebones implementation of `rgbgfx`, the graphics converter from the RGBDS project. This was previously implemented as a `custom_target` in the pokered fork above.
+
+```meson
+pngs = [
+  'bug',
+  'plant',
+  'snake',
+  'quadruped',
+]
+foreach f : pngs
+  gen = custom_target(output: '@0@_conv.png'.format(f),
+                      input: '@0@.png'.format(f),
+                      command: [rgbgfx, '-o', '@OUTPUT@', '@INPUT@'])
+  gfx += custom_target(output: '@0@.2bpp'.format(f),
+                       input: gen,
+                       command: [tools_gfx, '-o', '@OUTPUT@', '@INPUT@'])
+endforeach
+```
+
+The inner for loop can now use the rgbds module.
+
+```meson
+pngs = [
+  'bug',
+  'plant',
+  'snake',
+  'quadruped',
+]
+foreach f : pngs
+  gen = rgbds.gfx('@0@_conv.2bpp'.format(f), '@0@.png'.format(f))
+  gfx += custom_target(output: '@0@.2bpp'.format(f),
+                       input: gen,
+                       command: [tools_gfx, '-o', '@OUTPUT@', '@INPUT@'])
+endforeach
+```
+
+The [meson branch][branch] of my pokered fork has been updated with these changes.
+
+[open-pr]: https://github.com/mesonbuild/meson/pull/13831
+[compiling-moc]: https://mesonbuild.com/Qt6-module.html#compile_moc
+[branch]: https://github.com/terinjokes/pokered/tree/meson
