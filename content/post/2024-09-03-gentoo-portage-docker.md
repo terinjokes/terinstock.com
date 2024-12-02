@@ -145,6 +145,6 @@ $ emerge -1v apps-shells/direnv
  * direnv-2.34.0-vendor.tar.xz BLAKE2B SHA512 size ;-) ...                                                                        [ ok ]
 ```
 
-<!--
+{{% comment %}}
 CFLAGS="-O10 -ffast-tab-close -funroll-comments"
--->
+{{% /comment %}}
