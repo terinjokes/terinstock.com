@@ -1,28 +1,28 @@
 {{- if .IsNamedParams -}}
-    {{- $user := .Get "user" }}
-    {{- $slug := .Get "slug" }}
-    {{- if and $user $slug -}}
-        {{- template "render-speakerdeck" (dict "user" $user "slug" $slug) -}}
-    {{- end -}}
-{{- else -}}
-    {{- $user := .Get 0 -}}
-    {{- $slug := .Get 1 -}}
+  {{- $user := .Get "user" }}
+  {{- $slug := .Get "slug" }}
+  {{- if and $user $slug -}}
     {{- template "render-speakerdeck" (dict "user" $user "slug" $slug) -}}
+  {{- end -}}
+{{- else -}}
+  {{- $user := .Get 0 -}}
+  {{- $slug := .Get 1 -}}
+  {{- template "render-speakerdeck" (dict "user" $user "slug" $slug) -}}
 {{- end -}}
 
 {{- define "render-speakerdeck" -}}
-    {{- $url := printf "https://speakerdeck.com/%s/%s" .user .slug -}}
-    {{- $query := querify "url" $url -}}
-    {{- $request := printf "https://speakerdeck.com/oembed.json?%s" $query -}}
-    {{- $data := dict -}}
-    {{- with resources.GetRemote $request -}}
-      {{- with .Err -}}
-        {{- errorf "%s" . -}}
-      {{- else -}}
-        {{- $data = . | transform.Unmarshal -}}
-      {{- end -}}
+  {{- $url := printf "https://speakerdeck.com/%s/%s" .user .slug -}}
+  {{- $query := querify "url" $url -}}
+  {{- $request := printf "https://speakerdeck.com/oembed.json?%s" $query -}}
+  {{- $data := dict -}}
+  {{- with resources.GetRemote $request -}}
+    {{- with .Err -}}
+      {{- errorf "%s" . -}}
     {{- else -}}
-      {{- errorf "Unable to retrieve deck %q from SpeakerDeck" .slug -}}
+      {{- $data = . | transform.Unmarshal -}}
     {{- end -}}
-    {{- $data.html | safeHTML -}}
+  {{- else -}}
+    {{- errorf "Unable to retrieve deck %q from SpeakerDeck" .slug -}}
+  {{- end -}}
+  {{- $data.html | safeHTML -}}
 {{- end -}}
