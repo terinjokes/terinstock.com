@@ -1,5 +1,6 @@
 +++
 date = "2025-02-26T03:28:00Z"
+lastmod = "2025-02-26T12:12:00Z"
 title = "Netboot Windows 11 with iSCSI and iPXE"
 description = "Notes on installing and netbooting Windows 11 over iSCSI"
 summary = "![](/media/f9/fb032e2f72ad1df49f59f6bee29b35b7eabf8068eb9245bb0c950b9aac4ab8.png) I primarily run Linux, for work and for gaming. Unfortunately, some competitive games refuse to work on Linux or in virtual machines. This post explores installing and booting Windows 11 on physical hardware with a disk exported from a NAS."
@@ -11,7 +12,7 @@ summary = "![](/media/f9/fb032e2f72ad1df49f59f6bee29b35b7eabf8068eb9245bb0c950b9
            link="/media/f9/fb032e2f72ad1df49f59f6bee29b35b7eabf8068eb9245bb0c950b9aac4ab8.png"
            alt=`A fictious screenshot of a permanent ban from a game, in the Windows 95 installer style, with a 90s-era PC and a joystick in the left banner. The text is titled "Permanent Suspension" and reads "Your account has been permanently suspended due to the use of unauthorized Operating Systems or unauthorized virtual machines. This type of behavior causes damage to our community and the game's competitive integrity. This action will not be reversed."`
            title="Purposefully ambiguous and fictious permanent ban."
-           attr="([The Death Generator](https://deathgenerator.com/) by [@foone](https://digipres.club/@foone))"
+           attr="(created with [@foone](https://digipres.club/@foone)'s [The Death Generator](https://deathgenerator.com/))"
   >}}
 
 
@@ -163,7 +164,7 @@ efi /ipxe/ipxe.efi
 options prompt && dhcp && sanboot iscsi:nas.example.com:::1:iqn.2025-02.com.example:win-gaming
 ```
 
-There seems to be a bug where the first word in the options field is ignored.[^4] I used a valid command "prompt" as a clear signal should it ever start being interpreted in the future version.
+There seems to be a bug where the first word in the options field is ignored.[^4] I used a valid iPXE command `prompt`, which also provides a clear signal should it ever start being interpreted in the future version.
 
 [^4]: I'm not sure if this is a bug in systemd-boot or in iPXE.
 
