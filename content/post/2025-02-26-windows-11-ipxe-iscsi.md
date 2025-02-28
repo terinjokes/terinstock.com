@@ -32,7 +32,7 @@ For the past several years my desktop has also had a disk dedicated to maintaini
 
 # iPXE and iSCSI
 
-My first task was determining how to get a computer to boot from a NAS. My experience with network block devices is with Ceph RD, where a device is mounted into an already running operating system. For booting over an Ethernet IP network the standard is iSCSI. A great way to boot from an iSCSI disk is with [iPXE][]. To avoid any mistakes during this process, I removed all local drives from the system.[^1]
+My first task was determining how to get a computer to boot from a NAS. My experience with network block devices is with Ceph RBD, where a device is mounted into an already running operating system. For booting over an Ethernet IP network the standard is iSCSI. A great way to boot from an iSCSI disk is with [iPXE][]. To avoid any mistakes during this process, I removed all local drives from the system.[^1]
 
 [iPXE]: https://ipxe.org
 
