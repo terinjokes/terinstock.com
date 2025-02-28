@@ -16,7 +16,7 @@ summary = "![](/media/f9/fb032e2f72ad1df49f59f6bee29b35b7eabf8068eb9245bb0c950b9
   >}}
 
 
-My primarily operating system is Linux: I have it installed on my laptop and desktop. Thanks to the amazing work of the [WINE][wine], [CodeWeavers][codeweavers], and [Valve][valve] developers, it's also where I do PC gaming. I can spin up Windows in a virtual machine for the rare times I need to use it, and even pass through a GPU if I want to do gaming.
+My primary operating system is Linux: I have it installed on my laptop and desktop. Thanks to the amazing work of the [WINE][wine], [CodeWeavers][codeweavers], and [Valve][valve] developers, it's also where I do PC gaming. I can spin up Windows in a virtual machine for the rare times I need to use it, and even pass through a GPU if I want to do gaming.
 
 [wine]: https://www.winehq.org/
 [codeweavers]: https://www.codeweavers.com/
