@@ -15,11 +15,9 @@ jobs:
           hugo-version: "0.147.9"
           extended: true
       - run: hugo --minify
-      - uses: cloudflare/pages-action@v1
+      - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: "0b1bb2d40bbc1c8a1c6440bb1d756a3c"
-          projectName: terin
-          directory: public
+          command: pages deploy public --project-name=terin
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          wranglerVersion: "3"
