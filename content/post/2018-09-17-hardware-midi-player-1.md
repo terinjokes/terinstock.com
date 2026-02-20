@@ -122,12 +122,10 @@ Linux kernel with different options!
 
 Eventually, I discovered the drive worked with the 4.14 Linux kernel, but
 stopped working some point thereafter. Facing an 8-month range of changes to
-the kernel, I turned to git-bisect and [started a week-long hunt][hunt] for the
+the kernel, I turned to git-bisect and started a week-long hunt for the
 breaking change. Since this range was so large, and the underlying files so
 different, setting up a compilation cache did not decrease the rebuild
 durations.
-
-[hunt]: https://archive.vn/IqsHn
 
 After at least 16 bisection points, I was lead to [a single commit][38d2b5fb75]
 in the kernel driver for the USB controller used by the Raspberry Pi, the
